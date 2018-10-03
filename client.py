@@ -6,9 +6,9 @@ import logging
 
 import requests
 
-from pydiscourse.exceptions import (
+from .exceptions import (
     DiscourseError, DiscourseServerError, DiscourseClientError)
-from pydiscourse.sso import sso_payload
+from .sso import sso_payload
 
 
 log = logging.getLogger('pydiscourse.client')

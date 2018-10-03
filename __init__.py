@@ -2,4 +2,4 @@
 
 __version__ = '0.7.0'
 
-from pydiscourse.client import DiscourseClient
+from .client import DiscourseClient

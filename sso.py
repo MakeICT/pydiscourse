@@ -33,7 +33,7 @@ except ImportError:
     from urlparse import parse_qs
 
 
-from pydiscourse.exceptions import DiscourseError
+from .exceptions import DiscourseError
 
 
 def sso_validate(payload, signature, secret):

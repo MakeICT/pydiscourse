@@ -173,6 +173,30 @@ class DiscourseClient(object):
         """
         return self._get('/admin/users/list/{0}.json'.format(type), **kwargs)
 
+    def user_list(self, period="all", order="post_count", **kwargs):
+        """
+
+        optional user search: filter='test@example.com' or filter='scott'
+
+        Args:
+            type:
+            **kwargs:
+
+        Returns:
+
+        """
+        response = self._get('/directory_items.json?period={0}&order={1}'.format(period,order), **kwargs)
+        user_list = response['directory_items']
+        while response['total_rows_directory_items'] > len(user_list):
+            response = self._get(response['load_more_directory_items'])
+            user_list += response['directory_items']
+            print(response['total_rows_directory_items'])
+            print(len(user_list))
+
+        return user_list
+
+    
+
     def update_avatar_from_url(self, username, url, **kwargs):
         """
 
@@ -820,7 +844,7 @@ class DiscourseClient(object):
         """
         Get all infos of a group by group name
         """
-        return self._get("/groups/{0}/members.json".format(group_name))
+        return self._get("/groups/{0}.json".format(group_name))
 
     def create_group(self, name, title="", visible=True, alias_level=0, automatic_membership_retroactive=False, primary_group=False, automatic=False, automatic_membership_email_domains="", grant_trust_level=1, flair_url=None, flair_bg_color=None, flair_color=None, **kwargs):
         """

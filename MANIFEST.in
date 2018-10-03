@@ -1,6 +1,0 @@
-include setup.py
-include README.rst
-include MANIFEST.in
-include HISTORY.rst
-include LICENSE
-recursive-include pydiscourse
